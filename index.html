@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebula Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- 3D Music Loader -->
+    <div id="loader-wrapper" class="loader-wrapper">
+        <div class="music-loader">
+            <div class="vinyl-record">
+                <div class="vinyl-center"></div>
+            </div>
+            <div class="floating-notes">
+                <i class="fa-solid fa-music note note-1"></i>
+                <i class="fa-solid fa-music note note-2"></i>
+                <i class="fa-solid fa-music note note-3"></i>
+            </div>
+            <div class="equalizer">
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+            </div>
+            <div class="loader-text">Loading Nebula</div>
+        </div>
+    </div>
+
+    <!-- Onboarding Modal -->
+    <div id="welcome-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <i class="fa-solid fa-compact-disc"></i>
+                <h2>Welcome to Nebula</h2>
+            </div>
+            <p>To personalize your experience, please tell us a bit about yourself.</p>
+
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="user-name-input" placeholder="What's your name?">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-music"></i>
+                <input type="text" id="fav-song-input" placeholder="What's your favorite song?">
+            </div>
+
+            <button id="start-app-btn" class="primary-btn">Let's Go <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Background decorative elements -->
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+
+        <main class="player-card glass-panel">
+            <div class="player-layout">
+
+                <!-- Left Panel: Now Playing -->
+                <section class="now-playing-section">
+                    <div class="header">
+                        <div class="app-logo">
+                            <i class="fa-solid fa-music"></i>
+                            <h2>Nebula</h2>
+                        </div>
+                        <div class="user-greeting">
+                            <span id="greeting-text">Hello!</span>
+                        </div>
+                    </div>
+
+                    <div class="album-art-container">
+                        <img id="album-cover"
+                            src="https://images.unsplash.com/photo-1502845921867-b5b0bed9a039?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                            alt="Album Art">
+                        <div class="playing-anim" id="playing-anim">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+
+                    <div class="song-info">
+                        <div class="song-title-row">
+                            <h1 id="song-title">Select a Song</h1>
+                            <button class="icon-btn fvrt-btn" id="favorite-btn" title="Add to Favorites"><i
+                                    class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <p id="song-artist">Artist</p>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="time-display">
+                            <span id="current-time">0:00</span>
+                            <span id="duration">0:00</span>
+                        </div>
+                        <input type="range" id="progress-bar" min="0" max="100" value="0" step="0.1">
+                    </div>
+
+                    <div class="controls-container">
+                        <button class="icon-btn secondary-btn" id="shuffle-btn" title="Shuffle"><i
+                                class="fa-solid fa-shuffle"></i></button>
+                        <button class="icon-btn main-ctrl-btn" id="prev-btn" title="Previous"><i
+                                class="fa-solid fa-backward-step"></i></button>
+                        <button class="play-pause-btn" id="play-pause-btn" title="Play/Pause">
+                            <i class="fa-solid fa-play" id="play-icon"></i>
+                        </button>
+                        <button class="icon-btn main-ctrl-btn" id="next-btn" title="Next"><i
+                                class="fa-solid fa-forward-step"></i></button>
+                        <button class="icon-btn secondary-btn" id="loop-btn" title="Repeat"><i
+                                class="fa-solid fa-repeat"></i></button>
+                    </div>
+
+                    <div class="bottom-controls">
+                        <div class="volume-container">
+                            <i class="fa-solid fa-volume-low" id="vol-icon"></i>
+                            <input type="range" id="volume-slider" min="0" max="1" value="0.7" step="0.01">
+                        </div>
+                        <button class="icon-btn" id="download-btn" title="Download Song"><i
+                                class="fa-solid fa-download"></i></button>
+                    </div>
+                </section>
+
+                <!-- Right Panel: Playlist and Filters -->
+                <section class="playlist-section">
+                    <div class="search-container">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Search songs or artists...">
+                    </div>
+
+                    <div class="categories-container">
+                        <button class="category-btn active" data-category="All">All</button>
+                        <button class="category-btn" data-category="Hindi">Hindi</button>
+                        <button class="category-btn" data-category="Urdu">Urdu</button>
+                        <button class="category-btn" data-category="English">English</button>
+                        <button class="category-btn" data-category="Favorites"><i class="fa-solid fa-heart"
+                                style="margin-right: 5px;"></i>Favorites</button>
+                    </div>
+
+                    <div class="playlist-header">
+                        <h3>Playlist</h3>
+                        <span id="song-count">0 songs</span>
+                    </div>
+
+                    <ul class="playlist-list" id="playlist">
+                        <!-- Playlist items generated by JS -->
+                    </ul>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="audio-element"></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
